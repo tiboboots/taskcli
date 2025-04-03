@@ -12,8 +12,8 @@ def parse_user_input(user_input): # Parse command from input and return string c
     for val in split_data:
         if val in crud_commands:
             split_data.remove(val)
-            task_string = " ".join(split_data)
-            return task_string
+            parsed_input = " ".join(split_data)
+            return parsed_input
     else:
         print("Invalid. Please specify a valid command followed by an input task.")
 
@@ -22,11 +22,11 @@ def read_json(): # Get latest data from userdata.json file, save it to json_data
         json_data = json.load(userdata)
         return json_data
 
-def task_to_json(parsed_task, json_data): 
-    task_dictionary["task"] = parsed_task
+def data_to_json(parsed_input, json_data): 
+    task_dictionary["task"] = parsed_input
     json_data.append(task_dictionary)
-    with open(file_path, "w") as user_data:
-        json.dump(json_data, user_data, indent = 4)
+    with open(file_path, "w") as json_file:
+        json.dump(json_data, json_file, indent = 4)
 # Add user task to task key in dictionary, then append dictionary to json_data list and write changes to original file.
 
 crud_commands = ["add", "update", "delete", "list"]
@@ -55,11 +55,10 @@ while True:
         print(" Aborting...")
         sys.exit()
     else:
-        task_string = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to task_string variable.
-        if task_string is not None: #Check to see if task_string is not empty, if empty then don't write data to json file.
-            task_to_json(task_string, json_data) #If not empty, then we write dictionary with new user task to json file.
+        parsed_input = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to task_string variable.
+        if parsed_input is not None: #Check to see if task_string is not empty, if empty then don't write data to json file.
+            data_to_json(parsed_input, json_data) #If not empty, then we write dictionary with new user task to json file.
 
-            
           
 
             
