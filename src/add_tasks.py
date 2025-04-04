@@ -21,9 +21,8 @@ def parse_user_input(user_input): # Parse command from input and return string c
     split_data = user_input.split(" ")
     for val in split_data:
         if val in crud_commands:
-            split_data.remove(val)
-            parsed_input = " ".join(split_data)
-            return parsed_input
+            parsed_task = " ".join(split_data)
+            return parsed_task
     else:
         print("Invalid. Please specify a valid command followed by an input task.")
 
@@ -70,11 +69,12 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
             print(" Aborting...")
             sys.exit()
         else:
-            parsed_input = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
+            parsed_task = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
             latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
-            if parsed_input is not None: # Check to see if parsed_input is not empty, if empty then don't write data to json file.
-                add_task(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
+            if parsed_task is not None # Check to see if parsed_input is not empty, if empty then don't write data to json file.
+                add_task(parsed_task, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
                 print(f'Task added successfully! Task ID is: {latest_id}')
+                
 
           
 
