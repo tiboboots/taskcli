@@ -73,6 +73,7 @@ while True:
         latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
         if parsed_input is not None: # Check to see if parsed_input is not empty, if empty then don't write data to json file.
             data_to_json(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
+            print(f'Task added successfully! Task ID is: {latest_id}')
 
           
 
