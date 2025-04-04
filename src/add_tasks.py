@@ -10,10 +10,6 @@ task_dictionary = {"id": None,
                "createdAt": None, 
                "updatedAt": None}
 
-print(f'Commands are {crud_commands}')
-print("Enter a command followed by your task, or type 'quit' to exit the program")
-print('For example: "add" buy groceries" will add "buy groceries" as a new task')
-
 file_path = "userdata.json"
 
 def intialize_file_if_empty(): # Check if file is empty, if true then intialize with empty list
@@ -57,23 +53,28 @@ def data_to_json(parsed_input, json_data, latest_id):
         json.dump(json_data, json_file, indent = 4)
 # Add user task to task key in dictionary, then append dictionary to json_data list and write changes to original file.
 
-while True:
-    intialize_file_if_empty() # call function to check if json file is empty
-    json_data = read_json() # Get latest data from json file and save it to json_data variable
-    try:
-        user_input = input(": ").lower()
-        if user_input == 'quit': # check if user passed string of "quit" as value for input, exit program if true.
-            print("Exiting...")
+if __name__ == "__main__": # Only run executable code if add_tasks.py is run directly
+    print(f'Commands are {crud_commands}')
+    print("Enter a command followed by your task, or type 'quit' to exit the program")
+    print('For example: "add" buy groceries" will add "buy groceries" as a new task')
+
+    while True:
+        intialize_file_if_empty() # call function to check if json file is empty
+        json_data = read_json() # Get latest data from json file and save it to json_data variable
+        try:
+            user_input = input(": ").lower()
+            if user_input == 'quit': # check if user passed string of "quit" as value for input, exit program if true.
+                print("Exiting...")
+                sys.exit()
+        except KeyboardInterrupt:
+            print(" Aborting...")
             sys.exit()
-    except KeyboardInterrupt:
-        print(" Aborting...")
-        sys.exit()
-    else:
-        parsed_input = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
-        latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
-        if parsed_input is not None: # Check to see if parsed_input is not empty, if empty then don't write data to json file.
-            data_to_json(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
-            print(f'Task added successfully! Task ID is: {latest_id}')
+        else:
+            parsed_input = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
+            latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
+            if parsed_input is not None: # Check to see if parsed_input is not empty, if empty then don't write data to json file.
+                data_to_json(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
+                print(f'Task added successfully! Task ID is: {latest_id}')
 
           
 
