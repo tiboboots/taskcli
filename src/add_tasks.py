@@ -17,7 +17,7 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
         with open(file_path, "w") as userdata:
             json.dump([], userdata)
 
-def parse_user_input(user_input): # Parse command from input and return string containing user task
+def parse_user_input(user_input): # Parse command from input, return command and task as a string
     split_data = user_input.split(" ")
     for val in split_data:
         if val in crud_commands:
