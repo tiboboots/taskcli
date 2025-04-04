@@ -70,7 +70,8 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
             print(" Aborting...")
             sys.exit()
         else:
-            parsed_task = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
+            parsed_command = parse_user_input(user_input)[1] # Parse user_input to return command to parsed_command variable
+            parsed_task = parse_user_input(user_input)[0]# Parse command from user_input and return string with user task, saved to parsed_input variable
             latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
             if parsed_task is not None # Check to see if parsed_input is not empty, if empty then don't write data to json file.
                 add_task(parsed_task, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
