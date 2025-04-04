@@ -45,7 +45,7 @@ def id_generator(json_data):
         latest_id += 1
     return latest_id
 
-def data_to_json(parsed_input, json_data, latest_id): 
+def add_task(parsed_input, json_data, latest_id): 
     task_dictionary["task"] = parsed_input
     task_dictionary["id"] = latest_id
     json_data.append(task_dictionary)
@@ -73,7 +73,7 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
             parsed_input = parse_user_input(user_input)# Parse command from user_input and return string with user task, saved to parsed_input variable.
             latest_id = id_generator(json_data) # Generate an id based on whether json_data list is empty or not.
             if parsed_input is not None: # Check to see if parsed_input is not empty, if empty then don't write data to json file.
-                data_to_json(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
+                add_task(parsed_input, json_data, latest_id) # If not empty, then we write dictionary with new data to json file.
                 print(f'Task added successfully! Task ID is: {latest_id}')
 
           
