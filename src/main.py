@@ -45,14 +45,6 @@ def id_generator(json_data):
         latest_id += 1
     return latest_id
 
-def add_task(parsed_input, json_data, latest_id): 
-    task_dictionary["task"] = parsed_input
-    task_dictionary["id"] = latest_id
-    json_data.append(task_dictionary)
-    with open(file_path, "w") as json_file:
-        json.dump(json_data, json_file, indent = 4)
-# Add user task to task key in dictionary, then append dictionary to json_data list and write changes to original file.
-
 if __name__ == "__main__": # Only run executable code if add_tasks.py is run directly
     print(f'Commands are {crud_commands}')
     print("Enter a command followed by your task, or type 'quit' to exit the program")
