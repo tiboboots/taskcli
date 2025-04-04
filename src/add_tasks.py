@@ -21,8 +21,9 @@ def parse_user_input(user_input): # Parse command from input and return string c
     split_data = user_input.split(" ")
     for val in split_data:
         if val in crud_commands:
+            parsed_command = split_data.pop(val)
             parsed_task = " ".join(split_data)
-            return parsed_task
+            return parsed_task, parsed_command
     else:
         print("Invalid. Please specify a valid command followed by an input task.")
 
