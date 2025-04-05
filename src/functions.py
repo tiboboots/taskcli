@@ -54,7 +54,7 @@ def id_generator(json_data):
 def intialize_file_if_empty(): # Check if file is empty, if true then intialize with empty list
     if os.path.getsize(var.file_path) == 0:
         with open(var.file_path, "w") as userdata:
-            var.json.dump([], userdata)
+            json.dump([], userdata)
 
 
 
