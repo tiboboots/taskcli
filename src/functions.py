@@ -31,16 +31,11 @@ def input_id(user_command):
                 continue
 
 def input_task(user_command):
-    if user_command == 'add':
+    if user_command in ['update', 'add']:
         user_task = input("Task: ")
         if user_task == 'quit':
             quit_program()
         else:
-            return user_task
-    elif user_command == 'update':
-        task_id = input_id(user_command)
-        if task_id is not None:
-            user_task = input("Task: ")
             return user_task
 
 def id_generator(json_data):
