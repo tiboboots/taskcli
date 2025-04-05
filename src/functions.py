@@ -1,6 +1,47 @@
 import variables as var
 import os
 import json
+import sys
+
+def quit_program():
+    print("Exiting...")
+    sys.exit()
+
+def input_command():
+    while True:
+        user_command = input("Command: ").lower()
+        if user_command in var.crud_commands:
+            return user_command
+        elif user_command == 'quit':
+            quit_program()
+        else:
+            print("Invalid command, please try again.")
+            continue
+
+def input_id(user_command):
+    if user_command in ['update', 'delete']:
+        while True:
+            task_id = input("Task ID: ").lower()
+            if task_id.isdigit():
+                return task_id
+            elif task_id == 'quit':
+                quit_program()
+            else:
+                print("Invalid ID, must be a number. Try again.")
+                continue
+
+def input_task(user_command):
+    if user_command == 'add':
+        user_task = input("Task: ")
+        if user_task == 'quit':
+            quit_program()
+        else:
+            return user_task
+    elif user_command == 'update':
+        task_id = input_id(user_command)
+        if task_id is not None:
+            user_task = input("Task: ")
+            return user_task
 
 def id_generator(json_data):
     """Get id from the id key in the latest dictionary element in json_data list if list is not empty, 
@@ -13,20 +54,7 @@ def id_generator(json_data):
     else:
         latest_id = 0
         latest_id += 1
-    return latest_id
-
-def parse_user_input(user_input): # Parse command from input, return command and task as a string
-    split_data = user_input.split(" ")
-    for val in split_data:
-        if val in var.crud_commands:
-            parsed_command = split_data.pop(val)
-            parsed_task = " ".join(split_data)
-            return parsed_task, parsed_command
-        elif isinstance(val, int): # Check to see if item in split_data list is integer, if true then this is an id that we return
-            parsed_id = val
-            return parsed_id
-    else:
-        print("Invalid. Please specify a valid command followed by an input task.")
+    return latest_id 
 
 def intialize_file_if_empty(): # Check if file is empty, if true then intialize with empty list
     if os.path.getsize(var.file_path) == 0:
