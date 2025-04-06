@@ -23,7 +23,7 @@ def input_id(user_command):
         while True:
             task_id = input("Task ID: ").lower()
             if task_id.isdigit():
-                return task_id
+                return int(task_id) # Convert task_id to integer for data type consistency when performing conditonal checks with id field in json dictionaries
             elif task_id == 'quit':
                 quit_program()
             else:
