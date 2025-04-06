@@ -14,4 +14,14 @@ def add_task(user_task, json_data, latest_id):
         json.dump(json_data, json_file, indent = 4)
      
 
+def update_task(task_id, json_data, user_task ):
+    '''If json_data list is not empty, then iterate over each dictionary object, 
+        match the user specified id the correct dictionary's id, and update that dictionaries task with the new user task.
+    '''
+    if len(json_data) != 0:
+        for dictionary in json_data:
+            if task_id in dictionary["id"]:
+                dictionary["task"] = user_task
+
+
      
