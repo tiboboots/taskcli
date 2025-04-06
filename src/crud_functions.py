@@ -20,7 +20,7 @@ def update_task(task_id, json_data, user_task ):
     '''
     if len(json_data) != 0:
         for dictionary in json_data:
-            if task_id in dictionary["id"]:
+            if dictionary["id"] == task_id:
                 dictionary["task"] = user_task
 
 
