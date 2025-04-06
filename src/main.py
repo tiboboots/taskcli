@@ -23,7 +23,9 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
 
     elif user_command == 'update':
       task_id = func.input_id(user_command) # ask user for id if command is update, save to task_id variable
-      if task_id is not None: # check if task_id is not null, if true and it contains a valid id, then ask for task below
+      if task_id is not None: # check if task_id is not null, if true and it contains a valid id, then ask for new task below
         user_task = func.input_task(user_command)
+        crud.update_task(task_id, json_data, user_task)
+        print("Task updated successfully!")
 
             
