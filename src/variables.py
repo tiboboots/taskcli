@@ -9,3 +9,5 @@ task_dictionary = {"id": None,
 file_path = "userdata.json"
 
 status_command = "set"
+
+different_statuses = ['to-do', 'in-progress', 'done']
