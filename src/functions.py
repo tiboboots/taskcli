@@ -19,7 +19,7 @@ def input_command():
             continue
 
 def input_id(user_command):
-    if user_command in ['update', 'delete']:
+    if user_command in ['update', 'delete'] or user_command == var.status_command:
         while True:
             task_id = input("Task ID: ").lower()
             if task_id.isdigit():
@@ -29,14 +29,14 @@ def input_id(user_command):
             else:
                 print("Invalid ID, must be a number. Try again.")
                 continue
-
+    
 def input_task(user_command):
     if user_command in ['update', 'add']:
         user_task = input("Task: ")
         if user_task == 'quit':
             quit_program()
         else:
-            return user_task
+            return user_task    
 
 def id_generator(json_data):
     """Get id from the id key in the latest dictionary element in json_data list if list is not empty, 
