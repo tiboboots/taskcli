@@ -36,7 +36,12 @@ def input_task(user_command):
         if user_task == 'quit':
             quit_program()
         else:
-            return user_task    
+            return user_task   
+        
+def input_status(task_id):
+    if task_id is not None:
+        task_status = input("Set task status: ")
+        return task_status
 
 def id_generator(json_data):
     """Get id from the id key in the latest dictionary element in json_data list if list is not empty, 
