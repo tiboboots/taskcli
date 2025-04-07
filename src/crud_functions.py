@@ -14,17 +14,26 @@ def add_task(user_task, json_data, latest_id):
         json.dump(json_data, json_file, indent = 4)
      
 
-def update_task(task_id, json_data, user_task ):
+def update_task(task_id, json_data, user_task):
     if len(json_data) != 0:
         for dictionary in json_data:
             if dictionary["id"] == task_id:
                 dictionary["task"] = user_task
                 with open(var.file_path, "w") as json_file:
                     json.dump(json_data, json_file, indent = 4)
+                    break
                     
 '''If json_data list is not empty, then iterate over each dictionary object, 
         match the user specified id the correct dictionary's id, and update that dictionaries task with the new user task.
-    '''
+'''
 
+def delete_task(json_data, task_id):
+    if len(json_data) != 0:
+        for dictionary in json_data:
+            if dictionary["id"] == task_id:
+                json_data.remove(dictionary)
+                with open(var.file_path, "w") as json_file:
+                    json.dump(json_data, json_file, indent = 4)
+                    break
 
      
