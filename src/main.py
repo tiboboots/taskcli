@@ -36,5 +36,11 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
 
     elif user_command == 'list':
       crud.list_tasks(json_data)
+    
+    elif user_command == var.status_command:
+      task_id = func.input_id(user_command)
+      task_status = func.input_status(task_id)
+      crud.update_status(json_data, task_status, task_id)
+
 
             
