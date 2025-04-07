@@ -48,7 +48,7 @@ def delete_task(json_data, task_id):
 def list_tasks(json_data):
     if len(json_data) != 0:
         for dictionary in json_data:
-            print(f'Task ID: {dictionary['id']}, Task: {dictionary['task']}')
+            print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
 
 
      
