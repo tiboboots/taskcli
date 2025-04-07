@@ -28,4 +28,10 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
         crud.update_task(task_id, json_data, user_task)
         print("Task updated successfully!")
 
+    elif user_command == 'delete':
+      task_id = func.input_id(user_command)
+      if task_id is not None:
+        crud.delete_task(json_data, task_id)
+        print("Task successfully deleted!")
+
             
