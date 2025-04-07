@@ -34,4 +34,7 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
         crud.delete_task(json_data, task_id)
         print("Task successfully deleted!")
 
+    elif user_command == 'list':
+      crud.list_tasks(json_data)
+
             
