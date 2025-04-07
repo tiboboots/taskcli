@@ -31,7 +31,7 @@ def update_status(json_data, task_status, task_id):
     if len(json_data) != 0:
         for dictionary in json_data:
             if dictionary["id"] == task_id:
-                dictionary["status"] == task_status
+                dictionary["status"] = task_status
                 with open(var.file_path, "w") as json_file:
                     json.dump(json_data, json_file, indent = 4)
                     break
