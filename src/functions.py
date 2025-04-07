@@ -10,7 +10,7 @@ def quit_program():
 def input_command():
     while True:
         user_command = input("Command: ").lower()
-        if user_command in var.crud_commands:
+        if user_command in var.crud_commands or user_command == var.status_command:
             return user_command
         elif user_command == 'quit':
             quit_program()
@@ -55,6 +55,8 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
     if os.path.getsize(var.file_path) == 0:
         with open(var.file_path, "w") as userdata:
             json.dump([], userdata)
+
+
 
 
 
