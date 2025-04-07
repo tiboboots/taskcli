@@ -8,4 +8,4 @@ task_dictionary = {"id": None,
 
 file_path = "userdata.json"
 
-status_command = "set status"
+status_command = "set"
