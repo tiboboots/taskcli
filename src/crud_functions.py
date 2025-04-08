@@ -53,7 +53,7 @@ def list_all_tasks(json_data):# List all existing tasks if json_data list is not
 def list_tasks_by_status(json_data, just_the_status):
     if len(json_data) != 0:
         for dictionary in json_data:
-            if dictionary['status'] in just_the_status:
+            if dictionary['status'] == just_the_status:
                 print(f'ID: {dictionary['id']}, Task: {dictionary['task']}, Status: {dictionary['status']}')
         else:
             print("No tasks with that status exist.")
