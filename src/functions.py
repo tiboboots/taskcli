@@ -10,7 +10,7 @@ def quit_program():
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
     while True:
         user_command = input("Command: ").lower()
-        if user_command in var.crud_commands or user_command == var.status_command:
+        if user_command in var.crud_commands or user_command == var.status_command or user_command in var.filter_tasks_by_status:
             return user_command
         elif user_command == 'quit':
             quit_program()
