@@ -35,7 +35,15 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
         print("Task successfully deleted!")
 
     elif user_command == 'list': 
-      crud.list_tasks(json_data)
+      crud.list_all_tasks(json_data)
+
+    elif user_command in var.list_tasks_commands: 
+      just_the_status = func.parse_status_from_command(user_command)
+      crud.list_tasks_by_status(json_data, just_the_status)
+      '''
+      If user command is in the list_tasks_commands set, then parse the status from the command,
+      and use parsed status to return any tasks matching that status.
+      '''
     
     elif user_command == var.status_command: #If user command is equal to 'set', ask for task id, then a status to update a task's status.
       task_id = func.input_id(user_command)
