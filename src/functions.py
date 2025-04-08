@@ -10,7 +10,7 @@ def quit_program():
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
     while True:
         user_command = input("Command: ").lower()
-        if user_command in var.crud_commands or user_command == var.status_command or user_command in var.filter_tasks_by_status:
+        if user_command in var.crud_commands or user_command == var.status_command or user_command in var.list_tasks_commands:
             return user_command
         elif user_command == 'quit':
             quit_program()
@@ -61,12 +61,8 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
         with open(var.file_path, "w") as userdata:
             json.dump([], userdata)
 
-def parse_status_from_command(): # Parse the status from the list commands in the list_tasks_by_status list
-    filters_list = []
-    for command in var.list_tasks_commands:
-        filters_list.append(command.split(" "))
-    just_the_status = []
-    for split_command in filters_list:
-        just_the_status.append(split_command.pop(-1))
+def parse_status_from_command(user_command): # Parse the status from the user command and return it
+    split_command = user_command.split()
+    just_the_status = split_command.pop()
     return just_the_status
 
