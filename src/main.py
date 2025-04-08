@@ -7,7 +7,7 @@ import crud_functions as crud
 
 if __name__ == "__main__": # Only run executable code if add_tasks.py is run directly
    while True:
-    print(f'Commands are {*var.crud_commands, var.status_command}')
+    print(f'Commands are {*var.crud_commands, var.status_command, *var.list_tasks_by_status}')
     print("Enter a command followed by your task, or type 'quit' to exit the program")
     print('For example: "add" buy groceries" will add "buy groceries" as a new task')
 
@@ -28,16 +28,16 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
         crud.update_task(task_id, json_data, user_task)
         print("Task updated successfully!")
 
-    elif user_command == 'delete':
+    elif user_command == 'delete': #If command is delete, then ask for id of task to delete, and delete task if valid id is returned.
       task_id = func.input_id(user_command)
       if task_id is not None:
         crud.delete_task(json_data, task_id)
         print("Task successfully deleted!")
 
-    elif user_command == 'list':
+    elif user_command == 'list': 
       crud.list_tasks(json_data)
     
-    elif user_command == var.status_command:
+    elif user_command == var.status_command: #If user command is equal to 'set', ask for task id, then a status to update a task's status.
       task_id = func.input_id(user_command)
       task_status = func.input_status(task_id)
       crud.update_status(json_data, task_status, task_id)
