@@ -63,7 +63,7 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
 
 def parse_status_from_command(): # Parse the status from the list commands in the list_tasks_by_status list
     filters_list = []
-    for command in var.list_tasks_by_status:
+    for command in var.list_tasks_commands:
         filters_list.append(command.split(" "))
     just_the_status = []
     for split_command in filters_list:
