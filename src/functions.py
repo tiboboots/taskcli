@@ -60,3 +60,13 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
     if os.path.getsize(var.file_path) == 0:
         with open(var.file_path, "w") as userdata:
             json.dump([], userdata)
+
+def parse_status_from_command(): # Parse the status from the list commands in the list_tasks_by_status list
+    filters_list = []
+    for command in var.list_tasks_by_status:
+        filters_list.append(command.split(" "))
+    just_the_status = []
+    for split_command in filters_list:
+        just_the_status.append(split_command.pop(-1))
+    return just_the_status
+
