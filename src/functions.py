@@ -7,7 +7,7 @@ def quit_program():
     print("Exiting...")
     sys.exit()
 
-def input_command():
+def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
     while True:
         user_command = input("Command: ").lower()
         if user_command in var.crud_commands or user_command == var.status_command:
@@ -30,7 +30,7 @@ def input_id(user_command):
                 print("Invalid ID, must be a number. Try again.")
                 continue
     
-def input_task(user_command):
+def input_task(user_command): # Ask user for a task if command is either update or add
     if user_command in ['update', 'add']:
         user_task = input("Task: ")
         if user_task == 'quit':
@@ -38,7 +38,7 @@ def input_task(user_command):
         else:
             return user_task   
         
-def input_status(task_id):
+def input_status(task_id): # ask user for a new task status if task_id variable is valid
     if task_id is not None:
         task_status = input("Set task status: ")
         return task_status
@@ -60,8 +60,3 @@ def intialize_file_if_empty(): # Check if file is empty, if true then intialize 
     if os.path.getsize(var.file_path) == 0:
         with open(var.file_path, "w") as userdata:
             json.dump([], userdata)
-
-
-
-
-
