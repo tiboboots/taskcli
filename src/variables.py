@@ -11,3 +11,5 @@ file_path = "userdata.json"
 status_command = "set"
 
 different_statuses = ['to-do', 'in-progress', 'done']
+
+filter_tasks_by_status = {'list to-do', 'list in-progress', 'list done'}
