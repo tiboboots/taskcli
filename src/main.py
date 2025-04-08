@@ -7,7 +7,7 @@ import crud_functions as crud
 
 if __name__ == "__main__": # Only run executable code if add_tasks.py is run directly
    while True:
-    print(f'Commands are {*var.crud_commands, var.status_command, *var.list_tasks_by_status}')
+    print(f'Commands are {*var.crud_commands, var.status_command, *var.list_tasks_commands}')
     print("Enter a command followed by your task, or type 'quit' to exit the program")
     print('For example: "add" buy groceries" will add "buy groceries" as a new task')
 
