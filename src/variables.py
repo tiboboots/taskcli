@@ -12,4 +12,4 @@ status_command = "set"
 
 different_statuses = ['to-do', 'in-progress', 'done']
 
-list_tasks_by_status = {'list to-do', 'list in-progress', 'list done'}
+list_tasks_commands = {'list to-do', 'list in-progress', 'list done'}
