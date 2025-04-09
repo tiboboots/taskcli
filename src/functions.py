@@ -66,3 +66,11 @@ def parse_status_from_command(user_command): # Parse the status from the user co
     just_the_status = split_command.pop()
     return just_the_status
 
+def check_id_validility(json_data, task_id): #Check if user specified id exists within json file
+    valid_id = False
+    for dictionary in json_data:
+        if task_id != dictionary['id']:
+            return valid_id
+        else:
+            valid_id = True
+            return valid_id
