@@ -22,6 +22,7 @@ def update_task(task_id, json_data, user_task):
         for dictionary in json_data:
             if dictionary["id"] == task_id:
                 dictionary["task"] = user_task
+                dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 with open(var.file_path, "w") as json_file:
                     json.dump(json_data, json_file, indent = 4)
                     break                  
