@@ -1,20 +1,24 @@
 import variables as var
 import json
 from datetime import datetime
+import functions as func
 
 def read_json(): # Get latest data from userdata.json file, save it to json_data variable as list
      with open(var.file_path, "r") as userdata:
         json_data = json.load(userdata)
         return json_data
 
-def add_task(user_task, json_data, latest_id): # Update task_dictionary variable and it's keys to have the user specified task, generated id, and default status of 'to-do'
-    var.task_dictionary["task"] = user_task
-    var.task_dictionary["id"] = latest_id
-    var.task_dictionary["status"] = "to-do"
-    var.task_dictionary['createdAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    json_data.append(var.task_dictionary)
-    with open(var.file_path, "w") as json_file:
-        json.dump(json_data, json_file, indent = 4)
+def add_task(user_command, json_data, latest_id): # Update task_dictionary variable and it's keys to have the user specified task, generated id, and default status of 'to-do'
+    if user_command == "add":
+        user_task = func.input_task(user_command) # ask user to specify task to add, save task to user_task variable
+        var.task_dictionary["task"] = user_task
+        var.task_dictionary["id"] = latest_id
+        var.task_dictionary["status"] = "to-do"
+        var.task_dictionary['createdAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        json_data.append(var.task_dictionary)
+        with open(var.file_path, "w") as json_file:
+            json.dump(json_data, json_file, indent = 4)
+        print("Task successfully added!")
      
 
 def update_task(task_id, json_data, user_task):
