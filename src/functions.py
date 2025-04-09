@@ -69,8 +69,8 @@ def parse_status_from_command(user_command): # Parse the status from the user co
 def check_id_validility(json_data, task_id): #Check if user specified id exists within json file
     valid_id = False
     for dictionary in json_data:
-        if task_id != dictionary['id']:
+        if dictionary['id'] == task_id:
+            valid_id == True
             return valid_id
-        else:
-            valid_id = True
-            return valid_id
+    else:
+        return valid_id
