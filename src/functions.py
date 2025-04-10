@@ -106,3 +106,13 @@ def append_new_task(json_data, user_task, latest_id): # adds new tasks to json_d
     var.task_dictionary["status"] = "to-do"
     var.task_dictionary['createdAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     json_data.append(var.task_dictionary)
+
+def remove_task_from_list(json_data, task_id): # delete task from json_data list
+    if len(json_data) == 0:
+        return
+    for dictionary in json_data:
+        if dictionary["id"] == task_id:
+            json_data.remove(dictionary)
+            break
+    else:
+        return
