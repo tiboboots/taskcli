@@ -33,7 +33,7 @@ def update_task(user_command):
         return
     if valid_id == True: 
         user_task = func.input_task(user_command) # If id exists, then we ask user for the new task
-        func.new_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
+        func.updated_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
         write_json(json_data) # Write updated json_data list with new task back to json file
         print("Task successfully updated!")
     else: 
