@@ -13,16 +13,15 @@ def write_json(json_data):
         json.dump(json_data, json_file, indent = 4)
 
 def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
-    if user_command == "add":
-        json_data = read_json()
-        latest_id = func.id_generator(json_data)
-        user_task = func.input_task(user_command) 
-        func.append_new_task(json_data, user_task, latest_id)
-        write_json(json_data)
-        print("Task added successfully!")
+    if user_command != "add":
         return
-    else:
-        return
+    json_data = read_json()
+    latest_id = func.id_generator(json_data)
+    user_task = func.input_task(user_command) 
+    func.append_new_task(json_data, user_task, latest_id)
+    write_json(json_data)
+    print("Task added successfully!")
+    return
      
 def update_task(user_command):
     if user_command != 'update':
