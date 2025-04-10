@@ -74,3 +74,9 @@ def check_id_validility(json_data, task_id): #Check if user specified id exists 
             return valid_id
     else:
         return valid_id
+    
+def new_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
+    for dictionary in json_data:
+        if dictionary['id'] == task_id:
+            dictionary['task'] == user_task
+            return
