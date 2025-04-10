@@ -120,12 +120,11 @@ def remove_task_from_list(json_data, task_id): # delete task from json_data list
 def match_task_by_status(json_data, just_the_status): # List all tasks that match user specified status
     if len(json_data) == 0:
         return
+    flag_var = False
     for dictionary in json_data:
         if dictionary['status'] == just_the_status:
             print(f'ID: {dictionary['id']}, Task: {dictionary['task']}, Status: {dictionary['status']}')
             flag_var = True
-        else:
-            flag_var = False
     if flag_var == False:
         print("No tasks with that status exist.")
         return
