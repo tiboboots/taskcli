@@ -89,6 +89,17 @@ def updated_task_to_dictionary(json_data, task_id, user_task): #find task with m
     else:
         print("Json is empty.")
 
+def updated_status_to_dictionary(json_data, task_id, task_status):
+    if len(json_data) == 0:
+        return
+    for dictionary in json_data:
+        if dictionary["id"] == task_id:
+            dictionary["status"] = task_status
+            dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            break
+    else:
+        return
+    
 def append_new_task(json_data, user_task, latest_id): # adds new tasks to json_data list
     var.task_dictionary["task"] = user_task
     var.task_dictionary["id"] = latest_id
