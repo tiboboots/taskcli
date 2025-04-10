@@ -79,7 +79,7 @@ def check_id_validility(json_data, task_id): #Check if user specified id exists 
     else:
         print("Json is empty.")
     
-def new_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
+def updated_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
     if len(json_data) != 0:
         for dictionary in json_data:
             if dictionary['id'] == task_id:
