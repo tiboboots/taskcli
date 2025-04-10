@@ -20,6 +20,7 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
         func.append_new_task(json_data, user_task, latest_id)
         write_json(json_data)
         print("Task added successfully!")
+        return
     else:
         return
      
@@ -35,6 +36,7 @@ def update_task(user_command):
         func.updated_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
         write_json(json_data) # Write updated json_data list with new task back to json file
         print("Task successfully updated!")
+        return
     else: 
         print("No tasks with that id exist.")
         return
