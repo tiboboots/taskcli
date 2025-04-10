@@ -75,12 +75,9 @@ def list_all_tasks(user_command):# List all existing tasks if command equals "li
     for dictionary in json_data:
         print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
 
-def list_tasks_by_status(json_data, just_the_status): #List tasks by their status, use flag variable to determine whether task with specified status exists or not.
-    if len(json_data) != 0:
-        flag_var = False
-        for dictionary in json_data:
-            if dictionary['status'] == just_the_status:
-                print(f'ID: {dictionary['id']}, Task: {dictionary['task']}, Status: {dictionary['status']}')
-                flag_var = True #If any task with specified status exists, then set flag_var to be True.
-        if flag_var == False: #If flag_var variable equals False after loop, then no tasks matching specified status exist.
-            print("No tasks with that status exist.")
+def list_tasks_by_status(user_command): # List tasks based on user specified status
+    if user_command not in var.list_tasks_commands:
+        return
+    json_data = read_json()
+    just_the_status = func.parse_status_from_command(user_command)
+    func.match_task_by_status(json_data, just_the_status) # Use match_task function to find any tasks with user specified status
