@@ -12,17 +12,15 @@ def write_json(json_data):
     with open(var.file_path, "w") as json_file:
         json.dump(json_data, json_file, indent = 4)
 
-def add_task(user_command, json_data, latest_id): # Update task_dictionary variable and it's keys to have the user specified task, generated id, and default status of 'to-do'
+def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
     if user_command == "add":
-        user_task = func.input_task(user_command) # ask user to specify task to add, save task to user_task variable
-        var.task_dictionary["task"] = user_task
-        var.task_dictionary["id"] = latest_id
-        var.task_dictionary["status"] = "to-do"
-        var.task_dictionary['createdAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        json_data.append(var.task_dictionary)
-        with open(var.file_path, "w") as json_file:
-            json.dump(json_data, json_file, indent = 4)
-        print("Task successfully added!")
+        json_data = read_json()
+        latest_id = func.id_generator(json_data)
+        user_task = func.input_task(user_command) 
+        func.append_new_task(json_data, user_task, latest_id)
+        write_json(json_data)
+    else:
+        return
      
 def update_task(user_command):
     if user_command == 'update':
