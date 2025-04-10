@@ -83,7 +83,7 @@ def new_task_to_dictionary(json_data, task_id, user_task): #find task with match
     if len(json_data) != 0:
         for dictionary in json_data:
             if dictionary['id'] == task_id:
-                dictionary['task'] == user_task
+                dictionary['task'] = user_task
                 dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 return
     else:
