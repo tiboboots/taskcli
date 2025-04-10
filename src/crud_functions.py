@@ -19,6 +19,7 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
         user_task = func.input_task(user_command) 
         func.append_new_task(json_data, user_task, latest_id)
         write_json(json_data)
+        print("Task added successfully!")
     else:
         return
      
