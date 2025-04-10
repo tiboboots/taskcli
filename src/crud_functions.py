@@ -24,19 +24,20 @@ def add_task(user_command, json_data, latest_id): # Update task_dictionary varia
             json.dump(json_data, json_file, indent = 4)
         print("Task successfully added!")
      
-
-def update_task(task_id, json_data, user_task):
-    if len(json_data) != 0:
-        for dictionary in json_data:
-            if dictionary["id"] == task_id:
-                dictionary["task"] = user_task
-                dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                with open(var.file_path, "w") as json_file:
-                    json.dump(json_data, json_file, indent = 4)
-                    break                  
-'''If json_data list is not empty, then iterate over each dictionary object, 
- match the user specified id the correct dictionary's id, and update that dictionaries task with the new user task.
-'''
+def update_task(user_command):
+    if user_command == 'update':
+        json_data = read_json() # Get fresh data from json file
+        task_id = func.input_id(user_command) # ask user for id if command is update, save to task_id variable
+        valid_id = func.check_id_validility(json_data, task_id) # Check if id exists within json file's data
+    else:
+        return
+    if valid_id == True: 
+        user_task = func.input_task(user_command) # If id exists, then we ask user for the new task
+        func.new_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
+        write_json() # Write updated json_data list with new task back to json file
+    else: 
+        print("No tasks with that id exist.")
+        return
 
 def update_status(json_data, task_status, task_id): # Update an existing task's status if user specified id exists within json_data
     if len(json_data) != 0:
@@ -71,6 +72,3 @@ def list_tasks_by_status(json_data, just_the_status): #List tasks by their statu
                 flag_var = True #If any task with specified status exists, then set flag_var to be True.
         if flag_var == False: #If flag_var variable equals False after loop, then no tasks matching specified status exist.
             print("No tasks with that status exist.")
-
-            
-     
