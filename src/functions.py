@@ -68,17 +68,23 @@ def parse_status_from_command(user_command): # Parse the status from the user co
     return just_the_status
 
 def check_id_validility(json_data, task_id): #Check if user specified id exists within json file
-    valid_id = False
-    for dictionary in json_data:
-        if dictionary['id'] == task_id:
-            valid_id == True
+    if len(json_data) != 0:
+        valid_id = False
+        for dictionary in json_data:
+            if dictionary['id'] == task_id:
+                valid_id = True
+                return valid_id
+        else:
             return valid_id
     else:
-        return valid_id
+        print("Json is empty.")
     
 def new_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
-    for dictionary in json_data:
-        if dictionary['id'] == task_id:
-            dictionary['task'] == user_task
-            dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            return
+    if len(json_data) != 0:
+        for dictionary in json_data:
+            if dictionary['id'] == task_id:
+                dictionary['task'] == user_task
+                dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                return
+    else:
+        print("Json is empty.")
