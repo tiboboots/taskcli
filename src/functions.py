@@ -2,6 +2,7 @@ import variables as var
 import os
 import json
 import sys
+from datetime import datetime
 
 def quit_program():
     print("Exiting...")
@@ -79,4 +80,5 @@ def new_task_to_dictionary(json_data, task_id, user_task): #find task with match
     for dictionary in json_data:
         if dictionary['id'] == task_id:
             dictionary['task'] == user_task
+            dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             return
