@@ -80,4 +80,4 @@ def list_tasks_by_status(user_command): # List tasks based on user specified sta
         return
     json_data = read_json()
     just_the_status = func.parse_status_from_command(user_command)
-    func.match_task_by_status(json_data, just_the_status) # Use match_task function to find any tasks with user specified status
+    func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
