@@ -66,10 +66,14 @@ def delete_task(user_command): # Delete task from json file if command is equal 
     print("Task deleted successfully!")
     return
 
-def list_all_tasks(json_data):# List all existing tasks if json_data list is not empty
-    if len(json_data) != 0:
-        for dictionary in json_data:
-            print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
+def list_all_tasks(user_command):# List all existing tasks if command equals "list" and json_data list is not empty
+    if user_command != 'list':
+        return
+    json_data = read_json()
+    if len(json_data) == 0:
+        return
+    for dictionary in json_data:
+        print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
 
 def list_tasks_by_status(json_data, just_the_status): #List tasks by their status, use flag variable to determine whether task with specified status exists or not.
     if len(json_data) != 0:
