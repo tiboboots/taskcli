@@ -52,15 +52,19 @@ def set_status(user_command): # Update an existing task's status, if id exists a
    write_json(json_data)
    print("Status updated successfully!")
 
-
-def delete_task(json_data, task_id): # Delete task if json_data list is not empty and user specified task_id is found in list
-    if len(json_data) != 0:
-        for dictionary in json_data:
-            if dictionary["id"] == task_id:
-                json_data.remove(dictionary)
-                with open(var.file_path, "w") as json_file:
-                    json.dump(json_data, json_file, indent = 4)
-                    break
+def delete_task(user_command): # Delete task from json file if command is equal to "delete" and id is found in json_data list
+    if user_command != 'delete':
+        return
+    json_data = read_json()
+    task_id = func.input_id(user_command)
+    valid_id = func.check_id_validility(json_data, task_id)
+    if valid_id == False:
+        print("No tasks with that id exist.")
+        return
+    func.remove_task_from_list(json_data, task_id)
+    write_json(json_data)
+    print("Task deleted successfully!")
+    return
 
 def list_all_tasks(json_data):# List all existing tasks if json_data list is not empty
     if len(json_data) != 0:
