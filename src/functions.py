@@ -45,17 +45,14 @@ def input_status(task_id): # ask user for a new task status if task_id variable 
         return task_status
 
 def id_generator(json_data):
-    """Get id from the id key in the latest dictionary element in json_data list if list is not empty, 
-    and add 1 to it after each function call.
-    Else if json_data list is empty, start at 0 and add 1 to the id for each function call.
-      """
-    if len(json_data) != 0:
+    if len(json_data) != 0: # If json is not empty, then take id of latest task and add 1 to it for new task
         latest_id = json_data[-1]["id"]
         latest_id += 1
-    else:
+        return latest_id
+    else: # If json is empty, begin at 0 and add 1 to the id for every new task
         latest_id = 0
         latest_id += 1
-    return latest_id 
+        return latest_id
 
 def intialize_file_if_empty(): # Check if file is empty, if true then intialize with empty list
     if os.path.getsize(var.file_path) == 0:
@@ -68,29 +65,31 @@ def parse_status_from_command(user_command): # Parse the status from the user co
     return just_the_status
 
 def check_id_validility(json_data, task_id): #Check if user specified id exists within json file
-    if len(json_data) != 0:
-        valid_id = False
-        for dictionary in json_data:
-            if dictionary['id'] == task_id:
-                valid_id = True
-                return valid_id
-        else:
-            return valid_id
-    else:
-        print("Json is empty.")
+    if len(json_data) == 0:
+        print("Json is empty")
+        return
+    valid_id = False
+    for dictionary in json_data:
+        if dictionary['id'] == task_id:
+            valid_id = True
+            break
+    return valid_id
     
 def updated_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
-    if len(json_data) != 0:
-        for dictionary in json_data:
-            if dictionary['id'] == task_id:
-                dictionary['task'] = user_task
-                dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                return
-    else:
-        print("Json is empty.")
-
-def updated_status_to_dictionary(json_data, task_id, task_status):
     if len(json_data) == 0:
+        print("Json is empty")
+        return
+    for dictionary in json_data:
+        if dictionary['id'] == task_id:
+            dictionary['task'] = user_task
+            dictionary["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            return
+    else:
+        return
+
+def updated_status_to_dictionary(json_data, task_id, task_status): # Update a task's status
+    if len(json_data) == 0:
+        print("Json is empty")
         return
     for dictionary in json_data:
         if dictionary["id"] == task_id:
@@ -109,6 +108,7 @@ def append_new_task(json_data, user_task, latest_id): # adds new tasks to json_d
 
 def remove_task_from_list(json_data, task_id): # delete task from json_data list
     if len(json_data) == 0:
+        print("Json is empty.")
         return
     for dictionary in json_data:
         if dictionary["id"] == task_id:
@@ -119,6 +119,7 @@ def remove_task_from_list(json_data, task_id): # delete task from json_data list
     
 def match_task_by_status(json_data, just_the_status): # List all tasks that match user specified status
     if len(json_data) == 0:
+        print("Json is empty")
         return
     flag_var = False
     for dictionary in json_data:
