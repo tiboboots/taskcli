@@ -42,8 +42,13 @@ def input_task(): # Ask user for a task
     return user_task   
         
 def input_status(): # ask user for a new task status 
-    task_status = input("Set task status: ")
-    return task_status
+    while True:
+        task_status = input("Set task status: ")
+        if task_status not in var.different_statuses:
+            print(f"Invalid status, must be one of {var.different_statuses}. Try again.")
+            continue
+        else:
+            return task_status
 
 def id_generator(json_data):
     if len(json_data) != 0: # If json is not empty, then take id of latest task and add 1 to it for new task
