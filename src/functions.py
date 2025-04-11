@@ -6,10 +6,8 @@ from datetime import datetime
 
 def check_if_quit(user_command): # Check if user command is equal to quit, return True if it is, otherwise False
     quit_status = False
-    for command in var.all_commands:
-        if user_command == command:
-            quit_status == True
-            break
+    if user_command == 'quit':
+        quit_status = True
     return quit_status
 
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
