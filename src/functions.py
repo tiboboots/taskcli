@@ -39,10 +39,9 @@ def input_task(user_command): # Ask user for a task if command is either update 
         else:
             return user_task   
         
-def input_status(task_id): # ask user for a new task status if task_id variable is valid
-    if task_id is not None:
-        task_status = input("Set task status: ")
-        return task_status
+def input_status(): # ask user for a new task status 
+    task_status = input("Set task status: ")
+    return task_status
 
 def id_generator(json_data):
     if len(json_data) != 0: # If json is not empty, then take id of latest task and add 1 to it for new task
