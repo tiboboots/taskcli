@@ -33,13 +33,9 @@ def input_id(user_command):
                 print("Invalid ID, must be a number. Try again.")
                 continue
     
-def input_task(user_command): # Ask user for a task if command is either update or add
-    if user_command in ['update', 'add']:
-        user_task = input("Task: ")
-        if user_task == 'quit':
-            quit_program()
-        else:
-            return user_task   
+def input_task(): # Ask user for a task
+    user_task = input("Task: ")
+    return user_task   
         
 def input_status(): # ask user for a new task status 
     task_status = input("Set task status: ")
