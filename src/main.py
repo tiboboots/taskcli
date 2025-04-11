@@ -17,10 +17,4 @@ if __name__ == "__main__": # Only run executable code if add_tasks.py is run dir
     latest_id = func.id_generator(json_data) # Generate an id for each task based on whether json file is empty or not
     user_command = func.input_command() # ask user to specify a command, save valid command to user_command variable
 
-    crud.add_task(user_command)
-    crud.update_task(user_command)
-    crud.set_status(user_command)
-    crud.delete_task(user_command)
-    crud.list_all_tasks(user_command)
-    crud.list_tasks_by_status(user_command)
-      
+    crud.perform_task(user_command) # Use perform_task function to run the proper crud function based on user specified command
