@@ -112,3 +112,11 @@ def list_tasks_by_status(user_command): # List tasks based on user specified sta
     json_data = read_json()
     just_the_status = func.parse_status_from_command(user_command)
     func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
+
+def perform_task(user_command):
+    add_task(user_command)
+    update_task(user_command)
+    set_status(user_command)
+    delete_task(user_command)
+    list_all_tasks(user_command)
+    list_tasks_by_status(user_command)
