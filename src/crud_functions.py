@@ -84,3 +84,13 @@ def list_tasks_by_status(user_command): # List tasks based on user specified sta
     json_data = read_json()
     just_the_status = func.parse_status_from_command(user_command)
     func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
+
+command_dictionary = {"add": add_task, # dictionary containing all possible commands
+                      "update": update_task,
+                      "delete": delete_task,
+                      "set": set_status,
+                      "list": list_all_tasks,}
+
+def perform_task(user_command): # Centralized function to run proper function based on user command, using command_dictionary
+    task_function = command_dictionary.get(user_command) # Use .get() method to return function/value from command_dictionary based on user command
+    task_function(user_command) # Call returned function, for example, if user_command is 'add', then task_function = add_task() function
