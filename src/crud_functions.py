@@ -23,7 +23,7 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
         sys.exit()
     json_data = read_json() # If command is not quit, thus add, then begin add task process
     latest_id = func.id_generator(json_data)
-    user_task = func.input_task(user_command) 
+    user_task = func.input_task()
     func.append_new_task(json_data, user_task, latest_id)
     write_json(json_data)
     print("Task added successfully!")
@@ -38,12 +38,12 @@ def update_task(user_command):
         print("Exiting...")
         sys.exit()
     json_data = read_json()
-    task_id = func.input_id(user_command) # ask user for id if command is update, save to task_id variable
+    task_id = func.input_id() # ask user for id if command is update, save to task_id variable
     valid_id = func.check_id_validility(json_data, task_id)  # Check if id exists within json file's data
     if valid_id == False:
         print("No tasks with that id exist.")
         return
-    user_task = func.input_task(user_command) # If id exists, then we ask user for the new task
+    user_task = func.input_task() 
     func.updated_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
     write_json(json_data) # Write updated json_data list with new task back to json file
     print("Task successfully updated!")
@@ -58,7 +58,7 @@ def set_status(user_command): # Update an existing task's status, if id exists a
        print("Exiting...")
        sys.exit()
    json_data = read_json()
-   task_id = func.input_id(user_command)
+   task_id = func.input_id()
    valid_id = func.check_id_validility(json_data, task_id)
    if valid_id == False:
        print("No tasks with that id exist.")
@@ -77,7 +77,7 @@ def delete_task(user_command): # Delete task from json file if command is equal 
         print("Exiting...")
         sys.exit()
     json_data = read_json()
-    task_id = func.input_id(user_command)
+    task_id = func.input_id()
     valid_id = func.check_id_validility(json_data, task_id)
     if valid_id == False:
         print("No tasks with that id exist.")
