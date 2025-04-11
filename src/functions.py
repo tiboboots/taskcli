@@ -5,10 +5,13 @@ import sys
 from datetime import datetime
 
 def check_if_quit(user_command): # Check if user command is equal to quit, return True if it is, otherwise False
-    if user_command != 'quit':
-        quit_status = False
+    if user_command not in var.all_commands:
         return
-    quit_status = True
+    quit_status = False
+    for command in var.all_commands:
+        if user_command == command:
+            quit_status == True
+            break
     return quit_status
 
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
