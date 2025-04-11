@@ -17,14 +17,12 @@ def check_if_quit(user_command): # Check if user command is equal to quit, retur
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
     while True:
         user_command = input("Command: ").lower()
-        if user_command in var.crud_commands or user_command == var.status_command or user_command in var.list_tasks_commands:
-            return user_command
-        elif user_command == 'quit':
-            quit_program()
-        else:
-            print("Invalid command, please try again.")
+        if user_command not in var.all_commands:
+            print(f"Invalid command, please try again. Command must be one of: {var.all_commands}")
             continue
-
+        else:
+            return user_command
+        
 def input_id():
     while True:
         task_id = input("Task ID: ").lower()
