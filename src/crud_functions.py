@@ -14,7 +14,8 @@ def write_json(json_data):
         json.dump(json_data, json_file, indent = 4)
 
 def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
-    if user_command != "add" or user_command != 'quit': # If command is not add or quit, then exit function
+    if user_command not in var.all_commands: # If command is not in all_commands variable set, then exit function
+        print("Invalid command, please try again.")
         return
     quit_status = func.check_if_quit(user_command)
     if quit_status == True: # If command is quit, then use sys.exit to quit program gracefully
@@ -29,7 +30,8 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
     return
      
 def update_task(user_command):
-    if user_command != 'update' or user_command != 'quit':
+    if user_command not in var.all_commands:
+        print("Invalid command, please try again.")
         return
     quit_status = func.check_if_quit(user_command)
     if quit_status == True:
@@ -48,7 +50,8 @@ def update_task(user_command):
     return
 
 def set_status(user_command): # Update an existing task's status, if id exists and command is equal to status_command variable
-   if user_command != var.status_command or user_command != 'quit':
+   if user_command not in var.all_commands:
+       print("Invalid command, please try again.")
        return
    quit_status = func.check_if_quit(user_command)
    if quit_status == True:
@@ -66,7 +69,8 @@ def set_status(user_command): # Update an existing task's status, if id exists a
    print("Status updated successfully!")
 
 def delete_task(user_command): # Delete task from json file if command is equal to "delete" and id is found in json_data list
-    if user_command != 'delete' or user_command != 'quit':
+    if user_command not in var.all_commands:
+        print("Invalid command, please try again.")
         return
     quit_status = func.check_if_quit(user_command)
     if quit_status == True:
@@ -84,7 +88,8 @@ def delete_task(user_command): # Delete task from json file if command is equal 
     return
 
 def list_all_tasks(user_command):# List all existing tasks if command equals "list" and json_data list is not empty
-    if user_command != 'list' or user_command != 'quit':
+    if user_command not in var.all_commands:
+        print("Invalid command, please try again.")
         return
     quit_status = func.check_if_quit(user_command)
     if quit_status == True:
@@ -97,7 +102,8 @@ def list_all_tasks(user_command):# List all existing tasks if command equals "li
         print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
 
 def list_tasks_by_status(user_command): # List tasks based on user specified status
-    if user_command not in var.list_tasks_commands or user_command == 'quit':
+    if user_command not in var.all_commands:
+        print("Invalid command, please try again.")
         return
     quit_status = func.check_if_quit(user_command)
     if quit_status == True:
