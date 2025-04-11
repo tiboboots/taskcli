@@ -13,11 +13,12 @@ def write_json(json_data):
     with open(var.file_path, "w") as json_file:
         json.dump(json_data, json_file, indent = 4)
 
-def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
-    quit_status = func.check_if_quit(user_command)
+def add_task(user_command, quit_status): # Add new tasks to json_data list, write list back to json file with new tasks
     if quit_status == True: # If command is quit, then use sys.exit to quit program gracefully
         print("Exiting...")
         sys.exit()
+    if user_command != 'add':
+        return
     json_data = read_json() # If command is not quit, thus add, then begin add task process
     latest_id = func.id_generator(json_data)
     user_task = func.input_task()
@@ -26,11 +27,12 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
     print("Task added successfully!")
     return
      
-def update_task(user_command):
-    quit_status = func.check_if_quit(user_command)
+def update_task(user_command, quit_status):
     if quit_status == True:
         print("Exiting...")
         sys.exit()
+    if user_command != 'update':
+        return
     json_data = read_json()
     task_id = func.input_id() # ask user for id if command is update, save to task_id variable
     valid_id = func.check_id_validility(json_data, task_id)  # Check if id exists within json file's data
@@ -43,11 +45,12 @@ def update_task(user_command):
     print("Task successfully updated!")
     return
 
-def set_status(user_command): # Update an existing task's status, if id exists and command is equal to status_command variable
-   quit_status = func.check_if_quit(user_command)
+def set_status(user_command, quit_status): # Update an existing task's status, if id exists and command is equal to status_command variable
    if quit_status == True:
        print("Exiting...")
        sys.exit()
+   if user_command != 'set':
+       return
    json_data = read_json()
    task_id = func.input_id()
    valid_id = func.check_id_validility(json_data, task_id)
@@ -59,11 +62,12 @@ def set_status(user_command): # Update an existing task's status, if id exists a
    write_json(json_data)
    print("Status updated successfully!")
 
-def delete_task(user_command): # Delete task from json file if command is equal to "delete" and id is found in json_data list
-    quit_status = func.check_if_quit(user_command)
+def delete_task(user_command, quit_status): # Delete task from json file if command is equal to "delete" and id is found in json_data list
     if quit_status == True:
         print("Exiting...")
         sys.exit()
+    if user_command != 'delete':
+        return
     json_data = read_json()
     task_id = func.input_id()
     valid_id = func.check_id_validility(json_data, task_id)
@@ -75,30 +79,24 @@ def delete_task(user_command): # Delete task from json file if command is equal 
     print("Task deleted successfully!")
     return
 
-def list_all_tasks(user_command):# List all existing tasks if command equals "list" and json_data list is not empty
-    quit_status = func.check_if_quit(user_command)
+def list_all_tasks(user_command, quit_status):# List all existing tasks if command equals "list" and json_data list is not empty
     if quit_status == True:
         print("Exiting...")
         sys.exit()
+    if user_command != 'list':
+        return
     json_data = read_json()
     if len(json_data) == 0:
         return
     for dictionary in json_data:
         print(f'Task: {dictionary['task']}, Task ID: {dictionary['id']}, Task Status: {dictionary['status']}')
 
-def list_tasks_by_status(user_command): # List tasks based on user specified status
-    quit_status = func.check_if_quit(user_command)
+def list_tasks_by_status(user_command, quit_status): # List tasks based on user specified status
     if quit_status == True:
         print("Exiting...")
         sys.exit()
+    if user_command not in var.list_tasks_commands:
+        return
     json_data = read_json()
     just_the_status = func.parse_status_from_command(user_command)
     func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
-
-def perform_task(user_command):
-    add_task(user_command)
-    update_task(user_command)
-    set_status(user_command)
-    delete_task(user_command)
-    list_all_tasks(user_command)
-    list_tasks_by_status(user_command)
