@@ -31,7 +31,7 @@ def update_task(user_command):
     valid_id = func.check_id_validility(json_data, task_id)  # Check if id exists within json file's data
     if valid_id == False:
         print("No tasks with that id exist.")
-        return 
+        return
     user_task = func.input_task(user_command) # If id exists, then we ask user for the new task
     func.updated_task_to_dictionary(json_data, task_id, user_task) # add new task to matching dictionary in json_data list
     write_json(json_data) # Write updated json_data list with new task back to json file
@@ -47,7 +47,7 @@ def set_status(user_command): # Update an existing task's status, if id exists a
    if valid_id == False:
        print("No tasks with that id exist.")
        return
-   task_status = func.input_status(task_id)
+   task_status = func.input_status()
    func.updated_status_to_dictionary(json_data, task_id, task_status)
    write_json(json_data)
    print("Status updated successfully!")
