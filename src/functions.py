@@ -25,18 +25,15 @@ def input_command(): # Ask user for a command, return command if command exists 
             print("Invalid command, please try again.")
             continue
 
-def input_id(user_command):
-    if user_command in ['update', 'delete'] or user_command == var.status_command:
-        while True:
-            task_id = input("Task ID: ").lower()
-            if task_id.isdigit():
-                return int(task_id) # Convert task_id to integer for data type consistency when performing conditonal checks with id field in json dictionaries
-            elif task_id == 'quit':
-                quit_program()
-            else:
-                print("Invalid ID, must be a number. Try again.")
-                continue
-    
+def input_id():
+    while True:
+        task_id = input("Task ID: ").lower()
+        if task_id.isdigit() == False:
+            print("Invalid id, must be a number. Try again.")
+            continue
+        else:
+            return task_id
+        
 def input_task(): # Ask user for a task
     user_task = input("Task: ")
     return user_task   
