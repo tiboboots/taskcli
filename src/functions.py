@@ -4,15 +4,15 @@ import json
 import sys
 from datetime import datetime
 
-def check_if_quit(user_command): # Check if user command is equal to quit, return True if it is, otherwise False
-    quit_status = False
-    if user_command == 'quit':
-        quit_status = True
-    return quit_status
+def check_if_quit(user_input): # Check if user command is equal to quit, return True if it is, otherwise False
+    if user_input == 'quit':
+        print("Exiting...")
+        sys.exit()
 
 def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
     while True:
         user_command = input("Command: ").lower()
+        check_if_quit(user_command)
         if user_command not in var.all_commands:
             print(f"Invalid command, please try again. Command must be one of: {var.all_commands}")
             continue
@@ -22,6 +22,7 @@ def input_command(): # Ask user for a command, return command if command exists 
 def input_id():
     while True:
         task_id = input("Task ID: ").lower()
+        check_if_quit(task_id)
         if task_id.isdigit() == False:
             print("Invalid id, must be a number. Try again.")
             continue
@@ -30,11 +31,13 @@ def input_id():
         
 def input_task(): # Ask user for a task
     user_task = input("Task: ")
+    check_if_quit(user_task)
     return user_task   
         
 def input_status(): # ask user for a new task status 
     while True:
         task_status = input("Set task status: ")
+        check_if_quit(task_status)
         if task_status not in var.different_statuses:
             print(f"Invalid status, must be one of {var.different_statuses}. Try again.")
             continue
