@@ -2,6 +2,7 @@ import variables as var
 import json
 from datetime import datetime
 import functions as func
+import sys
 
 def read_json(): # Get latest data from userdata.json file, save it to json_data variable as list
      with open(var.file_path, "r") as userdata:
@@ -13,9 +14,13 @@ def write_json(json_data):
         json.dump(json_data, json_file, indent = 4)
 
 def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
-    if user_command != "add":
+    if user_command != "add" or user_command != 'quit': # If command is not add or quit, then exit function
         return
-    json_data = read_json()
+    quit_status = func.check_if_quit(user_command)
+    if quit_status == True: # If command is quit, then use sys.exit to quit program gracefully
+        print("Exiting...")
+        sys.exit()
+    json_data = read_json() # If command is not quit, thus add, then begin add task process
     latest_id = func.id_generator(json_data)
     user_task = func.input_task(user_command) 
     func.append_new_task(json_data, user_task, latest_id)
