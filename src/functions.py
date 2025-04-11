@@ -28,7 +28,7 @@ def input_id():
             print("Invalid id, must be a number. Try again.")
             continue
         else:
-            return task_id
+            return int(task_id)
         
 def input_task(): # Ask user for a task
     user_task = input("Task: ")
