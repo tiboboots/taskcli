@@ -4,7 +4,9 @@ import json
 import sys
 from datetime import datetime
 
-def quit_program():
+def check_if_quit(user_command):
+    if user_command != 'quit':
+        return
     print("Exiting...")
     sys.exit()
 
