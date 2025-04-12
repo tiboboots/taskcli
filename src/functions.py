@@ -9,7 +9,7 @@ def check_if_quit(user_input): # Check if user command is equal to quit, return 
         print("Exiting...")
         sys.exit()
 
-def input_command(): # Ask user for a command, return command if command exists in crud_commands list or status_command variable
+def input_command(): # Ask user for a command, return command if command exists in all_commands variable
     while True:
         user_command = input("Command: ").lower()
         check_if_quit(user_command)
@@ -19,10 +19,10 @@ def input_command(): # Ask user for a command, return command if command exists 
         else:
             return user_command
         
-def input_id():
+def input_id(): # Ask user for id, check if id consists only of numbers, if not then loop back and prompt them again.
     while True:
         task_id = input("Task ID: ").lower()
-        check_if_quit(task_id)
+        check_if_quit(task_id) # Call check_if_quit function to check if input for id prompt is equal to quit, exit program if true
         if task_id.isdigit() == False:
             print("Invalid id, must be a number. Try again.")
             continue
@@ -38,14 +38,14 @@ def input_status(): # ask user for a new task status
     while True:
         task_status = input("Set task status: ")
         check_if_quit(task_status)
-        if task_status not in var.different_statuses:
+        if task_status not in var.different_statuses: # Prompt user again for status if status is not found in different_statuses
             print(f"Invalid status, must be one of {var.different_statuses}. Try again.")
             continue
         else:
             return task_status
 
 def id_generator(json_data):
-    if len(json_data) != 0: # If json is not empty, then take id of latest task and add 1 to it for new task
+    if len(json_data) != 0: # If json is not empty, then take id of latest task and add 1 to it for new tasks
         latest_id = json_data[-1]["id"]
         latest_id += 1
         return latest_id
@@ -64,7 +64,7 @@ def parse_status_from_command(user_command): # Parse the status from the user co
     just_the_status = split_command.pop()
     return just_the_status
 
-def check_id_validility(json_data, task_id): #Check if user specified id exists within json file
+def check_id_validility(json_data, task_id): # Check if user specified id exists within json file, return True if it does, else False
     if len(json_data) == 0:
         print("Json is empty")
         return
@@ -75,7 +75,7 @@ def check_id_validility(json_data, task_id): #Check if user specified id exists 
             break
     return valid_id
     
-def updated_task_to_dictionary(json_data, task_id, user_task): #find task with matching id as user specified id, update task
+def updated_task_to_dictionary(json_data, task_id, user_task): # Find task with same matching id as user specified id, update task
     if len(json_data) == 0:
         print("Json is empty")
         return
