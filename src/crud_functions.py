@@ -1,8 +1,6 @@
 import variables as var
 import json
-from datetime import datetime
 import functions as func
-import sys
 
 def read_json(): # Get latest data from userdata.json file, save it to json_data variable as list
      with open(var.file_path, "r") as userdata:
@@ -85,12 +83,16 @@ def list_tasks_by_status(user_command): # List tasks based on user specified sta
     just_the_status = func.parse_status_from_command(user_command)
     func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
 
-command_dictionary = {"add": add_task, # dictionary containing all possible commands
+command_dictionary = {"add": add_task, # dictionary containing all functions that map to a single command, so no filter commands
                       "update": update_task,
                       "delete": delete_task,
                       "set": set_status,
                       "list": list_all_tasks,}
 
 def perform_task(user_command): # Centralized function to run proper function based on user command, using command_dictionary
+    if user_command in var.list_tasks_commands:
+        list_tasks_by_status(user_command) # Call list_tasks_by_status function if user_command is in the list_tasks_commands variable
+        return # Exit function and don't execute any code below, if condition is True
     task_function = command_dictionary.get(user_command) # Use .get() method to return function/value from command_dictionary based on user command
     task_function(user_command) # Call returned function, for example, if user_command is 'add', then task_function = add_task() function
+    return
