@@ -129,3 +129,8 @@ def match_task_by_status(json_data, just_the_status): # List all tasks that matc
     if flag_var == False:
         print("No tasks with that status exist.")
         return
+    
+def info_message():
+    print(f'Welcome! Commands are: {var.all_commands}')
+    print(f'Enter a command based on the action you want to perform. "quit" will exit the program.')
+    print(f'For example, entering the command of "add" will allow you to add a new task.')
