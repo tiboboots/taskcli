@@ -25,3 +25,6 @@ This is done using the following commands:
 - set: Can be used to set/update an existing tasks status.
 - quit: Allows you to stop the program and exit it at any point.
 - info: Let's you bring up all commands in case you forgot some of them.
+
+## Project URL
+The original inspiration for this project can be found here: https://roadmap.sh/projects/task-tracker
