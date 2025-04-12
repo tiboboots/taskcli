@@ -3,6 +3,7 @@ update_command = 'update'
 delete_command = 'delete'
 list_command = 'list'
 set_status_command = "set"
+info_command = "info"
 
 task_dictionary = {"id": None, 
                "task": None, 
