@@ -11,7 +11,7 @@ def check_if_quit(user_input): # Check if user command is equal to quit, return 
 
 def input_command(): # Ask user for a command, return command if command exists in all_commands variable
     while True:
-        user_command = input("Command: ").lower()
+        user_command = input("Command: ").lower().strip()
         check_if_quit(user_command)
         if user_command not in var.all_commands:
             print(f"Invalid command, please try again. Command must be one of: {var.all_commands}")
@@ -21,7 +21,7 @@ def input_command(): # Ask user for a command, return command if command exists 
         
 def input_id(): # Ask user for id, check if id consists only of numbers, if not then loop back and prompt them again.
     while True:
-        task_id = input("Task ID: ").lower()
+        task_id = input("Task ID: ").lower().strip()
         check_if_quit(task_id) # Call check_if_quit function to check if input for id prompt is equal to quit, exit program if true
         if task_id.isdigit() == False:
             print("Invalid id, must be a number. Try again.")
@@ -30,13 +30,13 @@ def input_id(): # Ask user for id, check if id consists only of numbers, if not 
             return int(task_id)
         
 def input_task(): # Ask user for a task
-    user_task = input("Task: ")
+    user_task = input("Task: ").strip()
     check_if_quit(user_task)
     return user_task   
         
 def input_status(): # ask user for a new task status 
     while True:
-        task_status = input("Set task status: ")
+        task_status = input("Set task status: ").strip()
         check_if_quit(task_status)
         if task_status not in var.different_statuses: # Prompt user again for status if status is not found in different_statuses
             print(f"Invalid status, must be one of {var.different_statuses}. Try again.")
