@@ -1,5 +1,3 @@
-crud_commands = ["add", "update", "delete", "list"]
-
 task_dictionary = {"id": None, 
                "task": None, 
                "status": None, 
