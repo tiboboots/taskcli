@@ -1,7 +1,3 @@
-import json
-import sys
-import os
-from datetime import datetime
 import variables as var
 import functions as func
 import crud_functions as crud
