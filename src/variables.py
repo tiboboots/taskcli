@@ -1,3 +1,9 @@
+add_command = 'add'
+update_command = 'update'
+delete_command = 'delete'
+list_command = 'list'
+set_status_command = "set"
+
 task_dictionary = {"id": None, 
                "task": None, 
                "status": None, 
@@ -5,8 +11,6 @@ task_dictionary = {"id": None,
                "updatedAt": None}
 
 file_path = "userdata.json"
-
-status_command = "set"
 
 different_statuses = ['to-do', 'in-progress', 'done']
 
