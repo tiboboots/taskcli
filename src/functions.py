@@ -131,6 +131,7 @@ def match_task_by_status(json_data, just_the_status): # List all tasks that matc
         return
     
 def info_message():
-    print(f'Welcome! Commands are: {var.all_commands}')
+    print(f'Welcome! Commands are: {", ".join(var.all_commands)}')
     print(f'Enter a command based on the action you want to perform. "quit" will exit the program.')
     print(f'For example, entering the command of "add" will allow you to add a new task.')
+    print(f'Use the "info" command to display all commands if you forget some of them.')
