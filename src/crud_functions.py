@@ -93,6 +93,9 @@ def perform_task(user_command): # Centralized function to run proper function ba
     if user_command in var.list_tasks_commands:
         list_tasks_by_status(user_command) # Call list_tasks_by_status function if user_command is in the list_tasks_commands variable
         return # Exit function and don't execute any code below, if condition is True
+    if user_command == var.info_command:
+        print(f'All commands: {", ".join(var.all_commands)}') # If user_command is equal to info_command variable, print all commands
+        return
     task_function = command_dictionary.get(user_command) # Use .get() method to return function/value from command_dictionary based on user command
     task_function(user_command) # Call returned function, for example, if user_command is 'add', then task_function = add_task() function
     return
