@@ -12,7 +12,7 @@ def write_json(json_data):
         json.dump(json_data, json_file, indent = 4)
 
 def add_task(user_command): # Add new tasks to json_data list, write list back to json file with new tasks
-    if user_command != 'add':
+    if user_command != var.add_command:
         return
     json_data = read_json() # If command is not quit, thus add, then begin add task process
     latest_id = func.id_generator(json_data)
@@ -23,7 +23,7 @@ def add_task(user_command): # Add new tasks to json_data list, write list back t
     return
      
 def update_task(user_command):
-    if user_command != 'update':
+    if user_command != var.update_command:
         return
     json_data = read_json()
     task_id = func.input_id() # ask user for id if command is update, save to task_id variable
@@ -40,7 +40,7 @@ def update_task(user_command):
     return
 
 def set_status(user_command): # Update an existing task's status, if id exists and command is equal to status_command variable
-   if user_command != var.status_command:
+   if user_command != var.set_status_command:
        return
    json_data = read_json()
    task_id = func.input_id()
@@ -54,7 +54,7 @@ def set_status(user_command): # Update an existing task's status, if id exists a
    print("Status updated successfully!")
 
 def delete_task(user_command): # Delete task from json file if command is equal to "delete" and id is found in json_data list
-    if user_command != 'delete':
+    if user_command != var.delete_command:
         return
     json_data = read_json()
     task_id = func.input_id()
@@ -68,7 +68,7 @@ def delete_task(user_command): # Delete task from json file if command is equal 
     return
 
 def list_all_tasks(user_command):# List all existing tasks if command equals "list" and json_data list is not empty
-    if user_command != 'list':
+    if user_command != var.list_command:
         return
     json_data = read_json()
     if len(json_data) == 0:
@@ -83,11 +83,11 @@ def list_tasks_by_status(user_command): # List tasks based on user specified sta
     just_the_status = func.parse_status_from_command(user_command)
     func.match_task_by_status(json_data, just_the_status) # Use match_task function to find and list any tasks with user specified status
 
-command_dictionary = {"add": add_task, # dictionary containing all functions that map to a single command, so no filter commands
-                      "update": update_task,
-                      "delete": delete_task,
-                      "set": set_status,
-                      "list": list_all_tasks,}
+command_dictionary = {var.add_command: add_task, # dictionary containing all functions that map to a single command, so no filter commands
+                      var.update_command: update_task,
+                      var.delete_command: delete_task,
+                      var.set_status_command: set_status,
+                      var.list_command: list_all_tasks}
 
 def perform_task(user_command): # Centralized function to run proper function based on user command, using command_dictionary
     if user_command in var.list_tasks_commands:
